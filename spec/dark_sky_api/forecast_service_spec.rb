@@ -4,7 +4,7 @@ RSpec.describe "ForecastService" do
     describe "gives the forecast data for a given city" do
         before :each do
             location = "denver"
-            @forecast = ForecastService.new(location)
+            @forecast = Forecast.new(location)
         end
 
         it "including current weather" do
@@ -23,7 +23,7 @@ RSpec.describe "ForecastService" do
             # expect(@forecast.hourly["summary"]).to eq("Clear throughout the day.")
             # expect(@forecast.hourly['data'][0]['precipProbability']).to eq(0.96)
             expect(@forecast.hourly["summary"].class).to eq(String)
-            expect(@forecast.hourly['data'][0]['precipProbability'].class).to eq(Float)
+            expect(@forecast.hourly['data'][0]['precipProbability'].class).to eq(Integer)
         end
 
         it "including daily weather" do

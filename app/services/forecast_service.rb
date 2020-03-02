@@ -33,7 +33,7 @@ class ForecastService
     private
 
         def get_json
-            JSON.parse(connection.get.env['response_body'])
+            JSON.parse(connection.get.body)
         end
 
         def connection
