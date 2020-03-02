@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "ForecastDataService" do
+RSpec.describe "ForecastService" do
     describe "gives the forecast data for a given city" do
         before :each do
             location = "denver"
