@@ -19,11 +19,11 @@ class GeoLocationService
     private
 
         def get_json
-            JSON.parse(connection.get.env['response_body'])
+            JSON.parse(connection.get.body)
         end
 
         def connection
-            key = ENV['GOOGLE_GEO_API']
+            key = ENV['GOOGLE_API_KEY']
         
             return @conn if @conn
             @conn = Faraday.new(url: "https://maps.googleapis.com/maps/api/geocode/json?") do |f|
