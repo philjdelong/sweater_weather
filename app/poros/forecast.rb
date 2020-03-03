@@ -3,7 +3,7 @@ class Forecast
 
     def initialize(location)
         @location = location
-        @id = 1
+        @id = nil
     end
 
     def currently
