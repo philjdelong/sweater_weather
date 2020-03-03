@@ -5,6 +5,7 @@ ruby '2.4.1'
 gem 'faraday'
 gem 'figaro'
 gem 'fast_jsonapi'
+gem 'unsplash'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
