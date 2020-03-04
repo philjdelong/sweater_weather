@@ -25,6 +25,6 @@ class RoadTrip
         arrival = (current + travel)
         
         x = ForecastService.new(@end_location, arrival)
-        JSON.parse(x.future_forecast)['currently']
+        JSON.parse(x.future_forecast.body)['currently']
     end
 end
