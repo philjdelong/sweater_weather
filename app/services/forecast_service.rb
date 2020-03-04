@@ -1,6 +1,6 @@
 class ForecastService
 
-    def initialize(location)
+    def initialize(location, arrival = nil)
         coordinates ||= GeoLocationService.new(location)
         @lat = coordinates.latitude
         @lng = coordinates.longitude
@@ -41,6 +41,13 @@ class ForecastService
                   day: Time.at(day['time'])
             }
         end
+    end
+
+    def future_forecast
+        {
+            summary: get_json['currently']['summary'],
+            temperature: get_json['currently']['temperature']
+        }
     end
 
     private
