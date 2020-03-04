@@ -8,10 +8,10 @@ RSpec.describe "User Registration Endpoint" do
             password_confirmation: 'password'
         }
 
+        phil = User.last
         expect(response).to be_successful
         expect(response.status).to eq(201)
         
-        phil = User.last
         get_json = JSON.parse(response.body)
 
         expect(get_json['data']['attributes'].keys).to eq(['api_key'])
