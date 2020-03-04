@@ -13,7 +13,6 @@ RSpec.describe "User Registration Endpoint" do
         expect(response.status).to eq(201)
         
         get_json = JSON.parse(response.body)
-
         expect(get_json['data']['attributes'].keys).to eq(['api_key'])
     end
 
