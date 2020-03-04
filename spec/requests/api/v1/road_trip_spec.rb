@@ -23,6 +23,7 @@ RSpec.describe "Roadtrip" do
 
             get_json = JSON.parse(response.body)
             expect(get_json['data']['attributes'].keys).to eq(['start_location', 'end_location', 'travel_time', 'forecast'])
+            expect(get_json['data']['attributes']['forecast'].keys).to eq(['summary', 'temperature'])
         end
     end
 end
