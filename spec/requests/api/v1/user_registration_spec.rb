@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "User Registration Endpoint" do
     it "creates a user with email, password, api_key" do
-        User.destroy_all
 
         post "/api/v1/users", params:{
             email: 'phil@example.com',
@@ -21,7 +20,7 @@ RSpec.describe "User Registration Endpoint" do
 
     it "gets 400 error if passwords are not the same" do
         post "/api/v1/users", params:{
-            email: 'paul@example.com',
+            email: 'phil@example.com',
             password: 'right',
             password_confirmation: 'wrong'
         }
@@ -30,12 +29,18 @@ RSpec.describe "User Registration Endpoint" do
     end
 
     it "gets 400 error if email is in use" do
+        post "/api/v1/users", params:{
+                email: 'phil@example.com',
+                password: 'password',
+                password_confirmation: 'password'
+            }
 
         post "/api/v1/users", params:{
             email: 'phil@example.com',
-            password: 'password',
-            password_confirmation: 'password'
+            password: 'duplicate',
+            password_confirmation: 'duplicate'
         }
+
         expect(response.status).to eq(400)
     end
 end

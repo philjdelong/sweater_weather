@@ -1,9 +1,10 @@
 class ForecastService
 
-    def initialize(location)
+    def initialize(location, time = nil)
         coordinates ||= GeoLocationService.new(location)
         @lat = coordinates.latitude
         @lng = coordinates.longitude
+        @time = time
     end
 
     def currently
@@ -43,17 +44,23 @@ class ForecastService
         end
     end
 
+    def future_forecast
+        key = ENV['DARK_SKY_KEY']
+
+        connection.get("/forecast/#{key}/#{@lat},#{@lng},#{@time}")
+    end
+
     private
 
         def get_json
-            JSON.parse(connection.get.body)
+            JSON.parse(connection.get("/forecast/#{key}/#{@lat},#{@lng}"))
         end
 
         def connection
             key = ENV['DARK_SKY_KEY']
 
             return @conn if @conn
-            @conn = Faraday.new(url: "https://api.darksky.net/forecast/#{key}/#{@lat},#{@lng}") do |f|
+            @conn = Faraday.new(url: "https://api.darksky.net/") do |f|
                 f.adapter Faraday.default_adapter
             end
         end
