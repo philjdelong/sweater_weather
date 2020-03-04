@@ -3,8 +3,8 @@ class RoadTrip
 
     def initialize(trip_info)
         @id = nil
-        @end_location = trip_info[:end]
-        @start_location = trip_info[:start]
+        @end_location = trip_info[:destination]
+        @start_location = trip_info[:origin]
     end
 
     def start_location
@@ -25,6 +25,6 @@ class RoadTrip
         arrival = (current + travel)
         
         x = ForecastService.new(@end_location, arrival)
-        JSON.parse(x.future_forecast.body)['currently']['summary']
+        JSON.parse(x.future_forecast)['currently']
     end
 end
