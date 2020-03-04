@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "User Login" do
     describe "Endpoint" do
         it "shows 200 response and api_key with successful login" do
+
             post "/api/v1/users", params:{
                 email: 'phil@example.com',
                 password: 'password',
@@ -24,12 +25,17 @@ RSpec.describe "User Login" do
         end
 
         it "gets 400 error if credentials are incorrect" do
+            post "/api/v1/users", params:{
+                email: 'phil@example.com',
+                password: 'password',
+                password_confirmation: 'password'
+            }
             
             post "/api/v1/users", params:{
                 email: 'phil@example.com',
                 password: 'wrong',
             }
-            
+        
             expect(response.status).to eq(400)
         end
     end
